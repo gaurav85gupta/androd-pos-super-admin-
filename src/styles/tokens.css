@@ -1,0 +1,136 @@
+/**
+ * TableFlow Super Admin Platform -- design tokens.
+ *
+ * Design plan (see frontend-design skill process):
+ *   Color:  deep ink-navy control-room surface, not generic near-black+neon.
+ *           Signal-amber primary accent echoes a kitchen order-ready light --
+ *           deliberate cross-product tie to the Android app's "ticket amber"
+ *           palette (Phase A theme/Color.kt), so the two products feel like
+ *           one family without being identical.
+ *   Type:   Inter (grotesk, UI density) + JetBrains Mono (restaurant codes,
+ *           device IDs, timestamps -- content that benefits from tabular
+ *           figures and unambiguous character shapes).
+ *   Layout: fixed sidebar + persistent top bar, dense tables not cards --
+ *           this is an ops cockpit, not a marketing surface.
+ *   Signature: the "status rail" -- a 3px colored bar on the left edge of
+ *           every restaurant/device/subscription row, so a Super Admin
+ *           scanning fifty rows can triage entirely by color before
+ *           reading a word of text.
+ */
+
+:root {
+  /* --- Surface (ink-navy control room) --- */
+  --surface-0: #0c0f14;      /* app background */
+  --surface-1: #12161d;      /* sidebar / top bar */
+  --surface-2: #181d26;      /* cards, table rows */
+  --surface-3: #1f2530;      /* hovered rows, inputs */
+  --surface-4: #2a3140;      /* borders, dividers */
+
+  /* --- Text --- */
+  --text-primary: #eef1f6;
+  --text-secondary: #9aa4b5;
+  --text-tertiary: #667085;
+  --text-on-accent: #1a1206;
+
+  /* --- Signal amber (primary accent) --- */
+  --accent-50: #fdf6ec;
+  --accent-200: #f5d9a3;
+  --accent-400: #eeb455;
+  --accent-500: #e8a33d;
+  --accent-600: #c8862a;
+  --accent-700: #9c6820;
+
+  /* --- Status semantics (load-bearing, not decorative) --- */
+  --status-active: #3ac17e;
+  --status-active-bg: rgba(58, 193, 126, 0.12);
+  --status-grace: #e8a33d;
+  --status-grace-bg: rgba(232, 163, 61, 0.14);
+  --status-suspended: #e5484d;
+  --status-suspended-bg: rgba(229, 72, 77, 0.13);
+  --status-archived: #667085;
+  --status-archived-bg: rgba(102, 112, 133, 0.14);
+  --status-pending: #6e8bf0;
+  --status-pending-bg: rgba(110, 139, 240, 0.14);
+
+  /* --- Type --- */
+  --font-ui: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-base: 0.9375rem;
+  --text-md: 1.0625rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.625rem;
+  --text-2xl: 2.125rem;
+
+  /* --- Spacing (4px scale) --- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* --- Shape --- */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+
+  /* --- Elevation --- */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.24);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.32);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.4);
+
+  /* --- Layout --- */
+  --sidebar-width: 232px;
+  --topbar-height: 64px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--surface-0);
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  font-size: var(--text-base);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--accent-500);
+  color: var(--text-on-accent);
+}
+
+/* Visible keyboard focus everywhere -- never suppressed. */
+:focus-visible {
+  outline: 2px solid var(--accent-500);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+a {
+  color: inherit;
+}
+
+code, .mono {
+  font-family: var(--font-mono);
+  font-feature-settings: "tnum" 1;
+}
